@@ -11,14 +11,101 @@ document.addEventListener('DOMContentLoaded', function() {
     numStories: '',
   };
 
-  // Assuming your form has the class 'custom-form', not an ID.
-  // Make sure your input elements have the correct 'name' attributes.
   var form = document.querySelector('.custom-form');
 
   form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
-    calculatePrice();
+    event.preventDefault(); 
+    // only calculate price if form is valid
+    if (validateForm()) {
+      calculatePrice();
+    }
   });
+
+  function validateForm() {
+    // Reset error messages
+    var errorMessages = document.querySelectorAll('.text-danger');
+    errorMessages.forEach(function(error) {
+      error.textContent = '';
+    });
+
+    var isValid = true;
+
+    // Validate each input
+    // Home Type
+    var homeType = form.querySelector('[name="homeType"]').value;
+    if (!homeType) {
+      document.getElementById('homeTypeError').textContent = 'Please select a home type.';
+      isValid = false;
+    }
+    // Zipcode
+    var zipcode = form.querySelector('[name="zipCode"]').value;
+    if (!zipcode || isNaN(zipcode)) {
+      document.getElementById('zipCodeError').textContent = 'Please enter a valid zipcode.';
+      isValid = false;
+    }
+
+    // Bedrooms
+    var bedrooms = form.querySelector('[name="bedrooms"]').value;
+    if (!bedrooms || isNaN(bedrooms)) {
+      document.getElementById('bedroomsError').textContent = 'Please enter a valid number of bedrooms.';
+      isValid = false;
+    }
+
+    // Bathrooms
+    var bathrooms = form.querySelector('[name="bathrooms"]').value;
+    if (!bathrooms || isNaN(bathrooms)) {
+      document.getElementById('bathroomsError').textContent = 'Please enter a valid number of bathrooms.';
+      isValid = false;
+    } else if (bathrooms % 1 !== 0 && bathrooms % 1 !== 0.5) {
+      document.getElementById('bathroomsError').textContent = 'Please enter a valid number of bathrooms (integer or .5).';
+      isValid = false;
+    }
+    // Garage Spaces
+    var garageSpaces = form.querySelector('[name="garageSpaces"]').value;
+    if (!garageSpaces || isNaN(garageSpaces)) {
+      document.getElementById('garageSpacesError').textContent = 'Please enter a valid number of garage spaces.';
+      isValid = false;
+    }
+    // Year Built
+    var yearBuilt = form.querySelector('[name="yearBuilt"]').value;
+    if (!yearBuilt || isNaN(yearBuilt)) {
+      document.getElementById('yearBuiltError').textContent = 'Please enter a valid year built.';
+      isValid = false;
+    }
+    // Patios/Porches
+    var patiosPorches = form.querySelector('[name="patiosPorches"]').value;
+    if (!patiosPorches || isNaN(patiosPorches)) {
+      document.getElementById('patiosPorchesError').textContent = 'Please enter a valid number of patios/porches.';
+      isValid = false;
+    }
+    // Lot Size
+    var lotSize = form.querySelector('[name="lotSize"]').value;
+    if (!lotSize || isNaN(lotSize)) {
+      document.getElementById('lotSizeError').textContent = 'Please enter a valid lot size.';
+      isValid = false;
+    }
+    // House Size
+    var houseSize = form.querySelector('[name="houseSize"]').value;
+    if (!houseSize || isNaN(houseSize)) {
+      document.getElementById('houseSizeError').textContent = 'Please enter a valid house size.';
+      isValid = false;
+    }
+    // Number of Stories
+    var numStories = form.querySelector('[name="numStories"]').value;
+    if (!numStories || isNaN(numStories)) {
+      document.getElementById('numStoriesError').textContent = 'Please enter a valid number of stories.';
+      isValid = false;
+    }
+    // Prospective Purchase Year 
+    var purchaseYear = form.querySelector('[name="purchaseYear"]').value;
+    var currentYear = new Date().getFullYear();
+    if (purchaseYear < 1900 || purchaseYear > currentYear + 1) {
+      document.getElementById('purchaseYearError').textContent = 'Please enter a valid year.';
+      isValid = false;
+    }
+
+    return isValid;
+  }
 
   function calculatePrice() {
     // Collect values from the form
