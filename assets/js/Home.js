@@ -11,12 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
     numStories: '',
   };
 
-  // Assuming your form has the class 'custom-form', not an ID.
-  // Make sure your input elements have the correct 'name' attributes.
   var form = document.querySelector('.custom-form');
 
   form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the form from submitting the traditional way
+    event.preventDefault(); 
     calculatePrice();
   });
 

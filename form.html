@@ -32,6 +32,21 @@
             <form id="myForm" class="custom-form" style="font-family: Cabin, sans-serif;">
                 <h1 style="font-size: 30px;">Estimate Form</h1>
                 <div class="row form-group">
+                    <div class="col-sm-4 col-xl-4 label-column"><label class="col-form-label" for="type-input-field" style="font-size: 16px;">Home Type:</label></div>
+                    <div class="col-sm-6 input-column">
+                        <select class="form-control" id="homeType" name="homeType">
+                            <option value="">Select Type</option>
+                            <option value="homeType_Single Family">Single Family</option>
+                            <option value="homeType_MultiFamily">Multi-Family</option>
+                            <option value="homeType_Condo">Condo</option>
+                            <option value="homeType_Townhouse">Townhouse</option>
+                            <option value="homeType_Multiple Occupancy">Multiple Occupancy</option>
+                            <option value="homeType_Mobile / Manufactured">Mobile/Manufactured</option>
+                            <option value="homeType_Vacant Land">Vacant Land</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group">
                     <div class="col-sm-4 col-xl-4 label-column"><label class="col-form-label" for="name-input-field" style="font-size: 16px;">Zipcode:</label></div>
                     <div class="col-sm-6 input-column"><input class="form-control" type="number" id="zipCode" name="zipCode"></div>
                 </div>
