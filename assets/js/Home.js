@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Prospective Purchase Year 
     var purchaseYear = form.querySelector('[name="purchaseYear"]').value;
     var currentYear = new Date().getFullYear();
-    if (purchaseYear < 1900 || purchaseYear > currentYear + 1) {
+    if (purchaseYear < currentYear) {
       document.getElementById('purchaseYearError').textContent = 'Please enter a valid year.';
       isValid = false;
     }
